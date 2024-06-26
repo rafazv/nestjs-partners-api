@@ -1,3 +1,4 @@
+### Get all events
 GET http://localhost:3000/events
 
 ### Create a new event
@@ -31,3 +32,34 @@ Content-Type: application/json
 
 ### Delete an event
 DELETE http://localhost:3000/events/{{eventId}}
+
+### Get all spots
+GET http://localhost:3000/events/{{eventId}}/spots
+
+### Create a new spot
+# @name createSpot
+POST http://localhost:3000/events/{{eventId}}/spots
+Content-Type: application/json
+
+{
+  "name": "A1"
+}
+
+### Save the spot id
+@spotId = {{ createspot.response.body.id }}
+
+### Get an spot
+GET http://localhost:3000/events/{{eventId}}/spots/{{spotId}}
+
+### Update an spot
+PATCH http://localhost:3000/events/{{eventId}}/spots/{{spotId}}
+Content-Type: application/json
+
+{
+  "name": "New spot",
+  "status": "RESERVED",
+  "eventId": {{eventId}}
+}
+
+### Delete an spot
+DELETE http://localhost:3000/events/{{eventId}}/spots/{{spotId}}
