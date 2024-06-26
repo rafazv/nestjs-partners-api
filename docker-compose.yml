@@ -12,5 +12,6 @@ services:
       MYSQL_DATABASE: nest
     ports:
       - '3306:3306'
-    # volumes:
-    #   - ./.docker/dbdata:/var/lib/mysql
+    volumes:
+      - ./.docker/mysql:/docker-entrypoint-initdb.d
+      # - ./.docker/dbdata:/var/lib/mysql
