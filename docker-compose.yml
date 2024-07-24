@@ -1,10 +1,11 @@
 services:
-  # app:
-  #   build: .
-  #   ports:
-  #     - '3000:3000'
-  #   volumes:
-  #     - .:/home/node/app
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+    volumes:
+      - .:/home/node/app
   db:
     image: mysql:8
     environment:
