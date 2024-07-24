@@ -1,0 +1,77 @@
+### Get all events
+GET http://localhost:3001/events
+
+### Create a new event
+# @name createEvent
+POST http://localhost:3001/events
+Content-Type: application/json
+
+{
+  "name": "New event",
+  "description": "This is a new event",
+  "date": "2020-01-01T00:00:00",
+  "price": 100
+}
+
+### Save the event id
+@eventId = {{ createEvent.response.body.id }}
+
+### Get an event
+GET http://localhost:3001/events/{{eventId}}
+
+### Update an event
+PATCH http://localhost:3001/events/{{eventId}}
+Content-Type: application/json
+
+{
+  "name": "New event 2",
+  "description": "This is a new event",
+  "date": "2020-01-01T00:00:00",
+  "price": 100
+}
+
+### Delete an event
+DELETE http://localhost:3001/events/{{eventId}}
+
+### Get all spots
+GET http://localhost:3001/events/{{eventId}}/spots
+
+### Create a new spot
+# @name createSpot
+POST http://localhost:3001/events/{{eventId}}/spots
+Content-Type: application/json
+
+{
+  "name": "A1"
+}
+
+### Save the spot id and name
+@spotId = {{ createSpot.response.body.id }}
+@spotName = {{ createSpot.response.body.name }}
+
+### Get an spot
+GET http://localhost:3001/events/{{eventId}}/spots/{{spotId}}
+
+### Update an spot
+PATCH http://localhost:3001/events/{{eventId}}/spots/{{spotId}}
+Content-Type: application/json
+
+{
+  "name": "New spot",
+  "status": "RESERVED",
+  "eventId": {{eventId}}
+}
+
+### Delete an spot
+DELETE http://localhost:3001/events/{{eventId}}/spots/{{spotId}}
+
+### Reserve spot
+POST http://localhost:3001/events/{{eventId}}/reserve
+Content-Type: application/json
+X-Api-Token: 123
+
+{
+  "spots": ["{{spotName}}"],
+  "ticketKind": "FULL",
+  "email": "test@test.com"
+}
