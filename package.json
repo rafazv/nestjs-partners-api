@@ -11,6 +11,7 @@
     "migrate:partner1": "dotenv -e .env.partner1 -- npx prisma migrate dev",
     "migrate:partner2": "dotenv -e .env.partner2 -- npx prisma migrate dev",
     "start": "nest start",
+    "start:partner2": "nest start -- partner2",
     "start:dev": "nest start --watch",
     "start:dev-partner2": "nest start --watch -- partner2",
     "start:debug": "nest start --debug --watch",
